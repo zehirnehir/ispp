@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+
+    .frame {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(260px 180px at 0% 8%,   #c60b1e 70%, transparent 71%),
+        radial-gradient(300px 200px at 20% 0%,  #ffc400 70%, transparent 71%),
+        radial-gradient(260px 180px at 55% 0%,  #ffdf5d 70%, transparent 71%),
+        radial-gradient(240px 200px at 85% 0%,  #c60b1e 70%, transparent 71%),
+
+        radial-gradient(260px 200px at 0% 45%,  #ffdf5d 70%, transparent 71%),
+        radial-gradient(260px 200px at 100% 55%,#ffc400 70%, transparent 71%),
+
+        radial-gradient(280px 200px at 0% 100%, #c60b1e 70%, transparent 71%),
+        radial-gradient(260px 200px at 35% 100%,#ffc400 70%, transparent 71%),
+        radial-gradient(260px 200px at 70% 100%,#ffdf5d 70%, transparent 71%),
+        radial-gradient(300px 220px at 100% 100%,#c60b1e 70%, transparent 71%),
+
+        linear-gradient(#ffffff, #ffffff);
+    }
+
+    .inner {
+      position: absolute;
+      inset: 40px;
+      background: #ffffff;
+      border-radius: 36px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .baslik {
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 40px;
+      padding: 0 20px;
+      font-family: 'Racing Sans One', sans-serif;
+      font-size: clamp(22px, 3.5vw, 48px);
+      font-weight: 400;
+      color: #c60b1e;
+      letter-spacing: 0.5px;
+    }
+
+    .orta {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 60px;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+    }
+
+    .kart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .kart img {
+      width: min(500px, 88vw);
+      max-height: calc(100vh - 340px);
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .dropdown {
+      width: 280px;
+      padding: 10px 14px;
+      font-size: 15px;
+      border-radius: 12px;
+      border: 2px solid #c60b1e;
+      background: #ffffff;
+      cursor: pointer;
+    }
+
+    .dropdown:hover,
+    .dropdown:focus {
+      border-color: #ffc400;
+      outline: none;
+    }
+
+    @media (max-width: 600px) {
+      .inner { inset: 22px; border-radius: 24px; }
+
+      .baslik {
+        font-size: 22px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+
+      .orta { gap: 36px; }
+
+      .kart img { max-height: calc(100vh - 300px); }
+
+      .dropdown { width: 240px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="frame">
+    <div class="inner">
+
+      <div class="baslik">
+        Nehir, Berra ve Dilan için İspanya Tur Rehberi
+      </div>
+
+      <div class="orta">
+
+        <!-- BARCELONA -->
+        <div class="kart">
+          <img src="resim/barc.png" alt="Barcelona">
+
+          <select class="dropdown" onchange="location = this.value;">
+            <option selected disabled>Barcelona – Seç</option>
+          
+            <option value="barcelona/sagrada-familia.html">Sagrada Familia</option>
+            <option value="barcelona/casa-batllo.html">Casa Batlló</option>
+            <option value="barcelona/park-guell.html">Park Güell</option>
+            <option value="barcelona/barcelona-katedrali.html">Barcelona Katedrali</option>
+            <option value="barcelona/la-rambla.html">La Rambla</option>
+            <option value="barcelona/boqueria.html">Mercat de la Boqueria</option>
+            <option value="barcelona/casa-mila.html">Casa Milà</option>
+            <option value="barcelona/tibidabo.html">Tibidabo</option>
+            <option value="barcelona/barri-gotic.html">Barri Gòtic</option>
+            <option value="barcelona/ciutadella-park.html">Ciutadella Parkı</option>
+            <option value="barcelona/placa-reial.html">Plaça Reial</option>
+            <option value="barcelona/kolomb-aniti.html">Kristof Kolomb Anıtı</option>
+            <option value="barcelona/picasso-muzesi.html">Picasso Müzesi</option>
+            <option value="barcelona/the-world-comes-to-life.html">The World Comes to Life with Each Kiss</option>
+            <option value="barcelona/katalan-muzik-sarayi.html">Katalan Müzik Sarayı</option>
+            <option value="barcelona/moco-museum.html">Moco Museum</option>
+            <option value="barcelona/casa-lleo-morera.html">Casa Lleó Morera</option>
+            <option value="barcelona/la-ribera.html">La Ribera</option>
+            <option value="barcelona/santa-maria-del-mar.html">Santa Maria del Mar</option>
+            <option value="barcelona/port-vell.html">Port Vell</option>
+            <option value="barcelona/arc-de-triomf.html">Arc de Triomf</option>
+            <option value="barcelona/katalan-ulusal-sanat-muzesi.html">Katalan Ulusal Sanat Müzesi</option>
+            <option value="barcelona/placa-de-catalunya.html">Plaça de Catalunya</option>
+            <option value="barcelona/montserrat.html">Montserrat</option>
+          </select>
+        </div>
+
+        <!-- MADRID -->
+        <div class="kart">
+          <img src="resim/mad.png" alt="Madrid">
+
+          <select class="dropdown" onchange="if(this.value) window.location.href=this.value;">
+            <option selected disabled value="">Madrid – Seç</option>
+          
+            <option value="madrid/prado-muzesi.html">Prado Müzesi</option>
+            <option value="madrid/retiro-park.html">Retiro Park</option>
+            <option value="madrid/puerta-de-alcala.html">Puerta de Alcalá</option>
+            <option value="madrid/fuente-de-cibeles.html">Fuente de Cibeles</option>
+            <option value="madrid/gran-via.html">Gran Vía</option>
+            <option value="madrid/la-latina.html">La Latina Sokakları</option>
+            <option value="madrid/basilica-saint-michael.html">Basilica of Saint Michael</option>
+            <option value="madrid/plaza-mayor.html">Plaza Mayor</option>
+            <option value="madrid/puerta-del-sol.html">Puerta del Sol</option>
+            <option value="madrid/san-miguel-market.html">San Miguel Yemek Pazarı</option>
+            <option value="madrid/royal-palace.html">Royal Palace</option>
+            <option value="madrid/almudena-katedrali.html">Almudena Katedrali</option>
+          </select>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

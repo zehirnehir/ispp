@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fuente de Cibeles – Madrid</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+
+  <style>
+    body{margin:0;background:#fff;color:#111;font-family:Arial,sans-serif;}
+    .wrap{max-width:980px;margin:0 auto;padding:22px;}
+    .top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;}
+    .brand{font-family:'Racing Sans One',sans-serif;color:#c60b1e;font-size:clamp(22px,3vw,34px);}
+    .back{border:2px solid #ffc400;border-radius:12px;padding:10px 14px;text-decoration:none;color:#111;}
+    .card{margin-top:16px;border:2px solid #c60b1e;border-radius:18px;overflow:hidden;}
+    .content{padding:18px;}
+    h1{margin:0 0 10px;font-size:clamp(24px,3.2vw,38px);}
+    .lead{margin:0 0 14px;line-height:1.7;color:#222;}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0 10px;}
+    .box{border:1px solid #ddd;border-radius:14px;padding:12px;background:#fff;}
+    .box b{display:block;margin-bottom:6px;color:#c60b1e;}
+    h2{margin:20px 0 10px;font-size:18px;color:#c60b1e;}
+    ul{margin:10px 0 0;padding-left:18px;line-height:1.7;}
+    .tip{margin-top:18px;border-top:1px solid #eee;padding-top:14px;line-height:1.7;}
+    .tip b{color:#c60b1e;}
+    @media (max-width:860px){.grid{grid-template-columns:1fr;}}
+
+    /* --- FOTOĞRAF ALANI (PRADO İLE AYNI) --- */
+    .photoArea{ margin-top:22px; padding-top:16px; border-top:2px dashed #ffc400; }
+    .photoRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .btn{
+      padding:10px 14px; border-radius:12px; border:2px solid #c60b1e;
+      background:#fff; cursor:pointer; font-size:14px;
+    }
+    .btn:hover{ border-color:#ffc400; }
+    .status{ margin-top:8px; color:#444; line-height:1.6; }
+
+    .previewWrap{
+      margin-top:12px; display:flex; gap:12px; flex-wrap:wrap; align-items:flex-start;
+    }
+    .previewWrap video, .previewWrap img{
+      width:min(380px, 90vw);
+      border-radius:14px;
+      border:1px solid #ddd;
+      background:#f4f4f4;
+      display:block;
+    }
+
+    #cam{ transform: none; }
+    .toggle{
+      display:flex; align-items:center; gap:8px;
+      padding:8px 12px; border:1px solid #ddd; border-radius:12px;
+      user-select:none; font-size:14px; background:#fff;
+    }
+
+    .galleryHeader{
+      margin-top:16px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .smallNote{
+      color:#666;
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .gallery{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap:10px;
+    }
+    @media (max-width: 860px){
+      .gallery{ grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .gItem{
+      position: relative;
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid #ddd;
+      background:#f4f4f4;
+    }
+    .gItem img{
+      width:100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display:block;
+    }
+
+    .meta{
+      padding:8px 10px;
+      background:#fff;
+      border-top:1px solid #eee;
+      font-size:13px;
+      color:#333;
+      line-height:1.35;
+    }
+
+    .delBtn{
+      position:absolute;
+      top:8px;
+      right:8px;
+      border:none;
+      border-radius:10px;
+      padding:8px 10px;
+      cursor:pointer;
+      background: rgba(198, 11, 30, 0.92);
+      color:#fff;
+      font-size:13px;
+      line-height:1;
+      z-index: 3;
+    }
+    .delBtn:hover{ background: rgba(255, 196, 0, 0.95); color:#111; }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,0.55);
+      color:#fff;
+      font-size: 20px;
+      z-index:2;
+      text-align:center;
+      padding: 12px;
+    }
+    .gItem.deleting .overlay{ display:flex; }
+    .gItem.deleting img{ filter: blur(1px) grayscale(0.6); transform: scale(1.02); }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">Madrid Rehberi</div>
+      <a class="back" href="../index.html">← Ana sayfaya dön</a>
+    </div>
+
+    <div class="card">
+      <div class="content">
+        <h1>Fuente de Cibeles</h1>
+
+        <p class="lead">
+          Fuente de Cibeles (Cibeles Çeşmesi), Madrid’in en güçlü şehir simgelerinden biridir: hem bir mitoloji figürünü (Kibele/Cybele) taşır, hem de bulunduğu meydan sayesinde Madrid’in “resmi yüzünü” tek bakışta anlatır.
+          Çeşmenin merkezinde, doğa ve bereketle ilişkilendirilen Kibele’nin iki aslanın çektiği bir arabada tasvir edildiğini görürsün. Bu, sadece estetik bir süs değil; 18–19. yüzyıl Avrupa’sında şehirlerin kendilerini “görkemli, düzenli ve modern” göstermeye başladığı dönemin tipik bir dilidir.
+          Bugünse Cibeles, Madrid kültüründe iki şeyle iyice özdeşleşti: şehrin görkemli meydan düzeni ve Real Madrid’in şampiyonluk kutlamaları. Yani burada hem “tarih/mitoloji”, hem “güncel şehir hafızası” aynı noktada birleşir.
+        </p>
+
+        <div class="grid">
+          <div class="box"><b>Konum / Bölge</b>Cibeles Meydanı (merkez – Retiro/Gran Vía bağlantısı)</div>
+          <div class="box"><b>Ne kadar süre?</b>10–25 dk (foto + kısa çevre turu)</div>
+          <div class="box"><b>En iyi zaman</b>Gün batımı / akşam ışıklandırması</div>
+        </div>
+
+        <h2>Tarihçe ve “neden Kibele?”</h2>
+        <ul>
+          <li>
+            Kibele (Cybele), Antik dünyada bereket ve doğayla ilişkilendirilen güçlü bir ana tanrıça figürüdür. Madrid’in merkezine böyle bir figürün yerleştirilmesi, şehrin kendini “büyük başkent” olarak kurguladığı dönemin sembolik bir ifadesi olarak okunur.
+          </li>
+          <li>
+            Çeşme, Madrid’in şehirleşme ve meydan düzenleme projelerinin hızlandığı bir dönemde öne çıkan anıtsal unsurlardan biridir: amaç sadece su kaynağı değil, aynı zamanda şehir vitrini oluşturmaktır.
+          </li>
+          <li>
+            Meydanın düzeni ve çevresindeki yapıların görünümü, Madrid’in “klasik ve resmi” kimliğini verir: burası turistik olmasının yanında şehir planı açısından da önemli bir düğüm noktasıdır.
+          </li>
+        </ul>
+
+        <h2>Neler var, neden önemli?</h2>
+        <ul>
+          <li>
+            <b>Meydan kompozisyonu:</b> Geniş yollar, anıtsal binalar ve çeşme birlikte çok “başkent” hissi verir. Madrid’in resmi kartpostallarının çoğu bu dilden beslenir.
+          </li>
+          <li>
+            <b>Şehir hafızası:</b> Real Madrid kutlamaları sayesinde Cibeles, modern Madrid kültürünün de parçası hâline gelmiştir (şehirde sembol noktaya dönüşür).
+          </li>
+          <li>
+            <b>Çevre bağlantıları:</b> Buradan Retiro tarafına, Gran Vía’ya veya Prado müzeler hattına yürüyüşle bağlanırsın; bu yüzden rota kurmak için stratejik bir duraktır.
+          </li>
+        </ul>
+
+        <h2>Pratik ziyaret önerileri</h2>
+        <ul>
+          <li>
+            <b>Bilet/rezervasyon:</b> Yok (dış mekân). Bu durak “hızlı ama etkili” bir fotoğraf ve kısa gözlem noktasıdır.
+          </li>
+          <li>
+            <b>Kalabalık:</b> Sürekli hareketli. En fotojenik an genelde gün batımı ve akşam ışıklarıdır; bu saatlerde insan da artar.
+          </li>
+          <li>
+            <b>Ulaşım:</b> Metro/otobüs kolay; ama en güzel deneyim çevreyi yürüyerek keşfetmektir.
+          </li>
+          <li>
+            <b>Fotoğraf taktiği:</b> Sadece çeşmeyi değil, arka plandaki binalarla birlikte kadraja al; o zaman “meydan hissi” çıkar.
+          </li>
+        </ul>
+
+        <div class="tip">
+          <b>Mini ipucu:</b> Cibeles’i tek başına “gidip dönülecek yer” gibi değil, Prado/Retiro veya Gran Vía yürüyüş rotasının merkez bağlantısı gibi kullan—o zaman Madrid’i daha akıllı gezmiş olursun.
+        </div>
+
+        <!-- FOTOĞRAF ALANI -->
+        <div class="photoArea">
+          <h2>📸 Anı Fotoğrafları</h2>
+
+          <div class="photoRow">
+            <button class="btn" type="button" onclick="startCamera()">Kamerayı Aç</button>
+            <button class="btn" type="button" onclick="takePhoto()">Fotoğraf Çek</button>
+            <button class="btn" type="button" onclick="retakePhoto()">Tekrar Çek</button>
+            <button class="btn" type="button" onclick="savePhoto()">Kaydet</button>
+
+            <label class="toggle">
+              <input id="mirrorToggle" type="checkbox">
+              Ayna modu
+            </label>
+          </div>
+
+          <div id="status" class="status"></div>
+
+          <div class="previewWrap">
+            <video id="cam" autoplay playsinline></video>
+            <img id="preview" alt="Çektiğin fotoğraf burada görünecek">
+          </div>
+
+          <canvas id="canvas" style="display:none;"></canvas>
+
+          <div class="galleryHeader">
+            <h2 style="margin:0;">🖼️ Kaydedilen Tüm Fotoğraflar</h2>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <button class="btn" type="button" onclick="downloadAll()">Tümünü indir</button>
+              <div class="smallNote">Not: Tarayıcı çoklu indirmede izin isteyebilir.</div>
+            </div>
+          </div>
+
+          <div id="gallery" class="gallery"></div>
+        </div>
+        <!-- FOTOĞRAF ALANI BİTTİ -->
+
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      getDocs,
+      query,
+      where,
+      limit,
+      doc,
+      deleteDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBBGbZ5-4iNKtRT8qireElMBGNc-6rVJUc",
+      authDomain: "ispanya-5707d.firebaseapp.com",
+      projectId: "ispanya-5707d"
+    };
+
+    // ✅ HER SAYFA İÇİN AYRI GALERİ (otomatik)
+    function makePageId(){
+      const path = (location.pathname || "").replace(/\\/g,"/");
+      const parts = path.split("/").filter(Boolean);
+      const folder = parts.length >= 2 ? parts[parts.length - 2] : "page";
+      const file = (parts[parts.length - 1] || "index.html").replace(/\.html?$/i,"");
+      return `${folder}_${file}`.toLowerCase().replace(/[^a-z0-9]+/g,"_").replace(/^_+|_+$/g, "");
+    }
+    const PAGE_ID = makePageId();
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const video = document.getElementById("cam");
+    const canvas = document.getElementById("canvas");
+    const preview = document.getElementById("preview");
+    const statusEl = document.getElementById("status");
+    const galleryEl = document.getElementById("gallery");
+    const mirrorToggle = document.getElementById("mirrorToggle");
+
+    let stream = null;
+    let lastDataUrl = "";
+    let currentPhotos = [];
+
+    function setStatus(t){ statusEl.textContent = t; }
+
+    function applyMirrorUI(){
+      video.style.transform = mirrorToggle.checked ? "scaleX(-1)" : "none";
+    }
+    mirrorToggle.addEventListener("change", applyMirrorUI);
+    applyMirrorUI();
+
+    function pad2(n){ return String(n).padStart(2, "0"); }
+
+    function formatDate(ts){
+      if(!ts || !ts.seconds) return "Tarih yok";
+      const d = new Date(ts.seconds * 1000);
+      return `${pad2(d.getDate())}.${pad2(d.getMonth()+1)}.${d.getFullYear()} • ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+    }
+
+    async function loadGallery(){
+      try{
+        setStatus("Kayıtlı fotoğraflar yükleniyor...");
+        galleryEl.innerHTML = "";
+
+        const photosRef = collection(db, "photos_multi");
+        const q = query(photosRef, where("pageId", "==", PAGE_ID), limit(500));
+        const snap = await getDocs(q);
+
+        if(snap.empty){
+          currentPhotos = [];
+          setStatus("Henüz kayıtlı fotoğraf yok. Kamerayı açıp çekebilirsin.");
+          return;
+        }
+
+        const arr = snap.docs.map(d => ({ _id: d.id, ...d.data() }));
+        arr.sort((a,b) => (b.createdAt?.seconds ?? 0) - (a.createdAt?.seconds ?? 0));
+
+        currentPhotos = arr;
+
+        arr.forEach((item) => {
+          const wrap = document.createElement("div");
+          wrap.className = "gItem";
+          wrap.dataset.id = item._id;
+
+          const img = document.createElement("img");
+          img.src = item.img;
+          img.alt = "Kaydedilen fotoğraf";
+
+          const overlay = document.createElement("div");
+          overlay.className = "overlay";
+          overlay.textContent = "🗑️ Siliniyor...";
+
+          const del = document.createElement("button");
+          del.className = "delBtn";
+          del.type = "button";
+          del.textContent = "Sil";
+          del.onclick = () => deletePhoto(item._id);
+
+          const meta = document.createElement("div");
+          meta.className = "meta";
+          meta.textContent = formatDate(item.createdAt);
+
+          wrap.appendChild(img);
+          wrap.appendChild(overlay);
+          wrap.appendChild(del);
+          wrap.appendChild(meta);
+
+          galleryEl.appendChild(wrap);
+        });
+
+        setStatus(`Fotoğraflar yüklendi ✅ (Toplam: ${arr.length})`);
+      }catch(e){
+        console.error(e);
+        setStatus("Fotoğraflar yüklenemedi ❌ (Firestore açık mı / kurallar test mode mu?)");
+      }
+    }
+
+    async function startCamera(){
+      try{
+        setStatus("Kamera açılıyor...");
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "user" },  // selfie için
+          audio: false
+        });
+        video.srcObject = stream;
+        setStatus("Kamera açık ✅ Fotoğraf Çek'e bas.");
+      }catch(e){
+        console.error(e);
+        setStatus("Kamera açılamadı ❌ (Live Server ile açtığından emin ol)");
+      }
+    }
+
+    function takePhoto(){
+      if(!stream){
+        alert("Önce Kamerayı Aç'a bas.");
+        return;
+      }
+
+      const w = 720, h = 540;
+      canvas.width = w; canvas.height = h;
+
+      const ctx = canvas.getContext("2d");
+      ctx.setTransform(1,0,0,1,0,0);
+
+      if(mirrorToggle.checked){
+        ctx.translate(w, 0);
+        ctx.scale(-1, 1);
+      }
+
+      ctx.drawImage(video, 0, 0, w, h);
+
+      lastDataUrl = canvas.toDataURL("image/jpeg", 0.7);
+      preview.src = lastDataUrl;
+
+      setStatus("Fotoğraf çekildi ✅ Beğendiysen Kaydet'e bas.");
+    }
+
+    function retakePhoto(){
+      lastDataUrl = "";
+      preview.removeAttribute("src");
+      setStatus("Tamam. Tekrar Fotoğraf Çek'e bas.");
+    }
+
+    async function savePhoto(){
+      if(!lastDataUrl){
+        alert("Önce fotoğraf çek.");
+        return;
+      }
+
+      try{
+        setStatus("Kaydediliyor...");
+
+        await addDoc(collection(db, "photos_multi"), {
+          pageId: PAGE_ID,
+          img: lastDataUrl,
+          createdAt: serverTimestamp()
+        });
+
+        setStatus("Kaydedildi ✅ Galeri güncellendi.");
+        await loadGallery();
+      }catch(e){
+        console.error(e);
+        setStatus("Kaydetme başarısız ❌ (Firestore test mode açık mı?)");
+      }
+    }
+
+    async function deletePhoto(docId){
+      const itemEl = document.querySelector(`.gItem[data-id="${docId}"]`);
+      if(!itemEl) return;
+
+      const ok = confirm("Bu fotoğraf silinsin mi?");
+      if(!ok) return;
+
+      itemEl.classList.add("deleting");
+      try{
+        await deleteDoc(doc(db, "photos_multi", docId));
+
+        const ov = itemEl.querySelector(".overlay");
+        if(ov) ov.textContent = "✅ Silindi";
+
+        setTimeout(() => itemEl.remove(), 650);
+        setStatus("Silindi ✅");
+
+        currentPhotos = currentPhotos.filter(p => p._id !== docId);
+      }catch(e){
+        console.error(e);
+        itemEl.classList.remove("deleting");
+        setStatus("Silme başarısız ❌ (kurallar izin veriyor mu?)");
+      }
+    }
+
+    function downloadAll(){
+      if(!currentPhotos.length){
+        alert("İndirilecek fotoğraf yok.");
+        return;
+      }
+
+      const ok = confirm(`Toplam ${currentPhotos.length} foto indirilecek. Tarayıcı izin isteyebilir. Devam?`);
+      if(!ok) return;
+
+      currentPhotos.forEach((p, i) => {
+        setTimeout(() => {
+          const a = document.createElement("a");
+          a.href = p.img;
+
+          const ts = p.createdAt?.seconds ? new Date(p.createdAt.seconds * 1000) : new Date();
+          const name =
+            `${PAGE_ID}_${String(i+1).padStart(3,"0")}_` +
+            `${ts.getFullYear()}-${pad2(ts.getMonth()+1)}-${pad2(ts.getDate())}_` +
+            `${pad2(ts.getHours())}-${pad2(ts.getMinutes())}.jpg`;
+
+          a.download = name;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        }, i * 250);
+      });
+    }
+
+    window.startCamera = startCamera;
+    window.takePhoto = takePhoto;
+    window.retakePhoto = retakePhoto;
+    window.savePhoto = savePhoto;
+    window.downloadAll = downloadAll;
+
+    await loadGallery();
+  </script>
+</body>
+</html>
