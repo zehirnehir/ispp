@@ -94,7 +94,9 @@
   display:block;
   background:#f4f4f4;
 }
-
+.gItem{
+  padding: 6px;
+}
     .meta{
       padding:8px 10px;
       background:#fff;
@@ -135,6 +137,46 @@
     }
     .gItem.deleting .overlay{ display:flex; }
     .gItem.deleting img{ filter: blur(1px) grayscale(0.6); transform: scale(1.02); }
+    /* === Galeri foto tıklayınca büyütme (Modal) === */
+.lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 9999;
+}
+.lightbox.open{ display:flex; }
+
+.lightboxInner{
+  position: relative;
+  width: min(980px, 96vw);
+  max-height: 90vh;
+}
+
+.lightboxImg{
+  width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #111;
+  display:block;
+}
+
+.lightboxClose{
+  position:absolute;
+  top: -10px;
+  right: -10px;
+  border:none;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor:pointer;
+  background: rgba(255,255,255,0.95);
+  font-size: 18px;
+  line-height: 1;
+}
   </style>
 </head>
 
@@ -336,6 +378,8 @@
           const img = document.createElement("img");
           img.src = item.img;
           img.alt = "Kaydedilen fotoğraf";
+          img.style.cursor = "zoom-in";
+img.onclick = () => openLightbox(item.img);
 
           const overlay = document.createElement("div");
           overlay.className = "overlay";
@@ -511,6 +555,27 @@
     window.downloadAll = downloadAll;
 
     await loadGallery();
+    const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+
+function openLightbox(src){
+  lightboxImg.src = src;
+  lightbox.classList.add("open");
+}
+
+function closeLightbox(){
+  lightbox.classList.remove("open");
+  lightboxImg.removeAttribute("src");
+}
+
+window.closeLightbox = closeLightbox; // HTML onclick için
   </script>
+  <!-- Lightbox (büyütme) -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <div class="lightboxInner" onclick="event.stopPropagation()">
+    <button class="lightboxClose" type="button" onclick="closeLightbox()">×</button>
+    <img id="lightboxImg" class="lightboxImg" alt="Büyük fotoğraf">
+  </div>
+</div>
 </body>
 </html>
