@@ -412,21 +412,49 @@
       }
     }
 
-    async function startCamera(){
-      try{
-        setStatus("Kamera açılıyor...");
-        stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "user" },
-          audio: false
-        });
-        video.srcObject = stream;
-        setStatus("Kamera açık ✅ Fotoğraf Çek'e bas.");
-      }catch(e){
-        console.error(e);
-        setStatus("Kamera açılamadı ❌ (HTTPS / GitHub Pages veya Live Server ile aç)");
+    /* ✅ EKLENDİ: eski stream'i kapat */
+    function stopStream(){
+      if(stream){
+        stream.getTracks().forEach(t => t.stop());
+        stream = null;
       }
     }
 
+    /* ✅ DEĞİŞTİ: orientation + metadata bekleme + ideal çözünürlük */
+    async function startCamera(){
+      try{
+        setStatus("Kamera açılıyor...");
+
+        stopStream();
+
+        const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: "user",
+            width:  { ideal: isPortrait ? 720 : 1280 },
+            height: { ideal: isPortrait ? 1280 : 720 }
+          },
+          audio: false
+        });
+
+        video.srcObject = stream;
+
+        await new Promise((resolve) => {
+          if (video.readyState >= 1) return resolve();
+          video.onloadedmetadata = () => resolve();
+        });
+
+        await video.play();
+
+        setStatus(`Kamera açık ✅ (${video.videoWidth}×${video.videoHeight}) Fotoğraf Çek'e bas.`);
+      }catch(e){
+        console.error(e);
+        setStatus("Kamera açılamadı ❌ (HTTPS / izin / Safari ayarları)");
+      }
+    }
+
+    /* ✅ DEĞİŞTİ: fotoğrafı video'nun gerçek boyutunda çek */
     function takePhoto(){
       if(!stream){
         alert("Önce Kamerayı Aç'a bas.");
@@ -454,11 +482,16 @@
 
       ctx.drawImage(video, 0, 0, w, h);
 
-      lastDataUrl = canvas.toDataURL("image/jpeg", 0.8);
+      lastDataUrl = canvas.toDataURL("image/jpeg", 0.85);
       preview.src = lastDataUrl;
 
-      setStatus("Fotoğraf çekildi ✅");
+      setStatus("Fotoğraf çekildi ✅ (oran bozulmaz)");
     }
+
+    /* ✅ EKLENDİ: telefon dönünce kamera yeniden açılsın */
+    window.addEventListener("orientationchange", () => {
+      if(stream) startCamera();
+    });
 
     function retakePhoto(){
       lastDataUrl = "";
