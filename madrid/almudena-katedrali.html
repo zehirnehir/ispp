@@ -380,22 +380,38 @@
       }
     }
 
-    function takePhoto(){
-      if(!stream){
-        alert("Önce Kamerayı Aç'a bas.");
-        return;
-      }
+   function takePhoto(){
+  if(!stream){
+    alert("Önce Kamerayı Aç'a bas.");
+    return;
+  }
 
-      const w = 720, h = 540;
-      canvas.width = w; canvas.height = h;
+  const w = video.videoWidth;
+  const h = video.videoHeight;
 
-      const ctx = canvas.getContext("2d");
-      ctx.setTransform(1,0,0,1,0,0);
+  if(!w || !h){
+    alert("Kamera hazır değil, 1 saniye bekle.");
+    return;
+  }
 
-      if(mirrorToggle.checked){
-        ctx.translate(w, 0);
-        ctx.scale(-1, 1);
-      }
+  canvas.width = w;
+  canvas.height = h;
+
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(1,0,0,1,0,0);
+
+  if(mirrorToggle.checked){
+    ctx.translate(w, 0);
+    ctx.scale(-1, 1);
+  }
+
+  ctx.drawImage(video, 0, 0, w, h);
+
+  lastDataUrl = canvas.toDataURL("image/jpeg", 0.8);
+  preview.src = lastDataUrl;
+
+  setStatus("Fotoğraf çekildi ✅ (Portre/Yatay fark etmez)");
+}
 
       ctx.drawImage(video, 0, 0, w, h);
 
