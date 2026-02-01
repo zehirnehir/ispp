@@ -28,7 +28,7 @@
     .tip b{color:#c60b1e;}
     @media (max-width:860px){.grid{grid-template-columns:1fr;}}
 
-    /* --- FOTOĞRAF ALANI (PRADO İLE BİREBİR) --- */
+    /* --- FOTOĞRAF ALANI --- */
     .photoArea{ margin-top:22px; padding-top:16px; border-top:2px dashed #ffc400; }
     .photoRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
     .btn{
@@ -86,17 +86,16 @@
       overflow:hidden;
       border:1px solid #ddd;
       background:#f4f4f4;
+      padding: 6px;
     }
     .gItem img{
-  width:100%;
-  height:auto;
-  object-fit: contain;
-  display:block;
-  background:#f4f4f4;
-}
-.gItem{
-  padding: 6px;
-}
+      width:100%;
+      height:auto;
+      object-fit: contain;
+      display:block;
+      background:#f4f4f4;
+    }
+
     .meta{
       padding:8px 10px;
       background:#fff;
@@ -137,46 +136,47 @@
     }
     .gItem.deleting .overlay{ display:flex; }
     .gItem.deleting img{ filter: blur(1px) grayscale(0.6); transform: scale(1.02); }
-    /* === Galeri foto tıklayınca büyütme (Modal) === */
-.lightbox{
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  z-index: 9999;
-}
-.lightbox.open{ display:flex; }
 
-.lightboxInner{
-  position: relative;
-  width: min(980px, 96vw);
-  max-height: 90vh;
-}
+    /* === Lightbox === */
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 9999;
+    }
+    .lightbox.open{ display:flex; }
 
-.lightboxImg{
-  width: 100%;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 14px;
-  background: #111;
-  display:block;
-}
+    .lightboxInner{
+      position: relative;
+      width: min(980px, 96vw);
+      max-height: 90vh;
+    }
 
-.lightboxClose{
-  position:absolute;
-  top: -10px;
-  right: -10px;
-  border:none;
-  border-radius: 12px;
-  padding: 10px 12px;
-  cursor:pointer;
-  background: rgba(255,255,255,0.95);
-  font-size: 18px;
-  line-height: 1;
-}
+    .lightboxImg{
+      width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 14px;
+      background: #111;
+      display:block;
+    }
+
+    .lightboxClose{
+      position:absolute;
+      top: -10px;
+      right: -10px;
+      border:none;
+      border-radius: 12px;
+      padding: 10px 12px;
+      cursor:pointer;
+      background: rgba(255,255,255,0.95);
+      font-size: 18px;
+      line-height: 1;
+    }
   </style>
 </head>
 
@@ -205,48 +205,28 @@
 
         <h2>Tarihçe ve “neden geç tamamlandı?”</h2>
         <ul>
-          <li>
-            Madrid uzun süre “başkent” olsa da, tarihsel olarak güçlü bir katedral geleneği Toledo gibi çevre şehirlerdeydi. Bu yüzden şehirde büyük bir katedral fikri geç olgunlaştı.
-          </li>
-          <li>
-            Katedralin inşa süreci farklı dönemlere yayıldığı için, tasarım yaklaşımı da değişti: dış cephede sarayla uyumlu, daha geleneksel bir dil; iç mekânda daha çağdaş ve aydınlık bir yaklaşım görülür.
-          </li>
-          <li>
-            Modern dönemde tamamlanması, onu Madrid’deki diğer “eski” dini yapılardan ayırır: burada tarihî bir atmosfer kadar, modern bir düzen ve tasarım hissi de vardır.
-          </li>
+          <li>Madrid uzun süre “başkent” olsa da, tarihsel olarak güçlü bir katedral geleneği Toledo gibi çevre şehirlerdeydi.</li>
+          <li>Katedralin inşa süreci farklı dönemlere yayıldığı için dış cephe daha geleneksel, iç mekân daha çağdaş bir dil taşır.</li>
+          <li>Modern dönemde tamamlanması, onu Madrid’deki diğer “eski” dini yapılardan ayırır.</li>
         </ul>
 
         <h2>İçeride neye bakmalı? (kaçırma noktaları)</h2>
         <ul>
-          <li>
-            <b>İç mekânın renkli tavan ve hatları:</b> Pek çok katedralde daha “karanlık, ağır” bir hava varken Almudena daha aydınlık ve modern bir etki verir. Bu farkı özellikle orta nefte yürürken hissedersin.
-          </li>
-          <li>
-            <b>Kraliyet Sarayı ile kurduğu görsel ilişki:</b> Dışarı çıkıp birkaç adım geri çekilince saray–katedral yan yana “Madrid’in vitrini” gibi durur. Fotoğraf için de en iyi açı bu.
-          </li>
-          <li>
-            <b>Şapel ve yan bölümler:</b> Hızlı geçilirse kaçabilir; 5 dakika ayırınca hem sessiz bir mola olur hem detay yakalarsın.
-          </li>
+          <li><b>İç mekânın renkli tavan ve hatları:</b> Aydınlık ve modern hissi özellikle orta nefte yürürken yakalarsın.</li>
+          <li><b>Kraliyet Sarayı ile görsel ilişki:</b> Dışarı çıkıp birkaç adım geri çekilince en iyi kadraj oluşur.</li>
+          <li><b>Şapel ve yan bölümler:</b> 5 dakika ayırınca detay yakalarsın.</li>
         </ul>
 
         <h2>Pratik ziyaret önerileri</h2>
         <ul>
-          <li>
-            <b>Bilet/rezervasyon:</b> Ana ziyaret genelde kolaydır; bazı bölümler/etkinlikler veya özel alanlar için kurallar ve saatler değişebilir. Gitmeden aynı gün saatleri kontrol etmek iyi olur.
-          </li>
-          <li>
-            <b>Kalabalık:</b> Saray çıkış saatlerinde yoğunlaşabilir. “Saray → Katedral” yerine bazen “Katedral → Saray” yapmak daha rahat hissettirebilir.
-          </li>
-          <li>
-            <b>Süre planı:</b> Katedral + saray aynı bölgede olduğu için aynı güne koymak mantıklı. Katedrale 30–60 dk, saraya daha uzun süre ayırmayı bekle.
-          </li>
-          <li>
-            <b>Ulaşım:</b> Merkezde; yürüyerek ulaşmak en kolayı. Yakın çevrede başka duraklara da hızlı bağlanırsın.
-          </li>
+          <li><b>Bilet/rezervasyon:</b> Saatler/kurallar değişebilir; aynı gün kontrol et.</li>
+          <li><b>Kalabalık:</b> Saray çıkış saatlerinde yoğunlaşabilir.</li>
+          <li><b>Süre planı:</b> Katedral + sarayı aynı güne koymak mantıklı.</li>
+          <li><b>Ulaşım:</b> Merkezde; yürüyerek ulaşmak en kolayı.</li>
         </ul>
 
         <div class="tip">
-          <b>Mini ipucu:</b> Katedrale girince önce orta koridorda yavaşça yürüyüp “modern/aydınlık” hissi yakala; sonra yan şapellere 5 dakika ayır. Böyle gezince Almudena “sıradan katedral” gibi gelmez.
+          <b>Mini ipucu:</b> Önce orta koridorda yavaş yürü, sonra yan şapellere 5 dk ayır.
         </div>
 
         <!-- FOTOĞRAF ALANI -->
@@ -289,6 +269,14 @@
     </div>
   </div>
 
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <div class="lightboxInner" onclick="event.stopPropagation()">
+      <button class="lightboxClose" type="button" onclick="closeLightbox()">×</button>
+      <img id="lightboxImg" class="lightboxImg" alt="Büyük fotoğraf">
+    </div>
+  </div>
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import {
@@ -310,7 +298,6 @@
       projectId: "ispanya-5707d"
     };
 
-    // ✅ SAYFAYA GÖRE OTOMATİK ID (her sayfanın galerisi ayrı)
     function makePageId(){
       const path = (location.pathname || "").replace(/\\/g,"/");
       const parts = path.split("/").filter(Boolean);
@@ -350,6 +337,21 @@
       return `${pad2(d.getDate())}.${pad2(d.getMonth()+1)}.${d.getFullYear()} • ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
     }
 
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+
+    function openLightbox(src){
+      lightboxImg.src = src;
+      lightbox.classList.add("open");
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove("open");
+      lightboxImg.removeAttribute("src");
+    }
+    window.closeLightbox = closeLightbox;
+
     async function loadGallery(){
       try{
         setStatus("Kayıtlı fotoğraflar yükleniyor...");
@@ -379,7 +381,7 @@
           img.src = item.img;
           img.alt = "Kaydedilen fotoğraf";
           img.style.cursor = "zoom-in";
-img.onclick = () => openLightbox(item.img);
+          img.onclick = () => openLightbox(item.img);
 
           const overlay = document.createElement("div");
           overlay.className = "overlay";
@@ -421,49 +423,41 @@ img.onclick = () => openLightbox(item.img);
         setStatus("Kamera açık ✅ Fotoğraf Çek'e bas.");
       }catch(e){
         console.error(e);
-        setStatus("Kamera açılamadı ❌ (Live Server ile açtığından emin ol)");
+        setStatus("Kamera açılamadı ❌ (HTTPS / GitHub Pages veya Live Server ile aç)");
       }
     }
 
-   function takePhoto(){
-  if(!stream){
-    alert("Önce Kamerayı Aç'a bas.");
-    return;
-  }
+    function takePhoto(){
+      if(!stream){
+        alert("Önce Kamerayı Aç'a bas.");
+        return;
+      }
 
-  const w = video.videoWidth;
-  const h = video.videoHeight;
+      const w = video.videoWidth;
+      const h = video.videoHeight;
 
-  if(!w || !h){
-    alert("Kamera hazır değil, 1 saniye bekle.");
-    return;
-  }
+      if(!w || !h){
+        alert("Kamera hazır değil, 1 saniye bekle.");
+        return;
+      }
 
-  canvas.width = w;
-  canvas.height = h;
+      canvas.width = w;
+      canvas.height = h;
 
-  const ctx = canvas.getContext("2d");
-  ctx.setTransform(1,0,0,1,0,0);
+      const ctx = canvas.getContext("2d");
+      ctx.setTransform(1,0,0,1,0,0);
 
-  if(mirrorToggle.checked){
-    ctx.translate(w, 0);
-    ctx.scale(-1, 1);
-  }
-
-  ctx.drawImage(video, 0, 0, w, h);
-
-  lastDataUrl = canvas.toDataURL("image/jpeg", 0.8);
-  preview.src = lastDataUrl;
-
-  setStatus("Fotoğraf çekildi ✅ (Portre/Yatay fark etmez)");
-}
+      if(mirrorToggle.checked){
+        ctx.translate(w, 0);
+        ctx.scale(-1, 1);
+      }
 
       ctx.drawImage(video, 0, 0, w, h);
 
-      lastDataUrl = canvas.toDataURL("image/jpeg", 0.7);
+      lastDataUrl = canvas.toDataURL("image/jpeg", 0.8);
       preview.src = lastDataUrl;
 
-      setStatus("Fotoğraf çekildi ✅ Beğendiysen Kaydet'e bas.");
+      setStatus("Fotoğraf çekildi ✅");
     }
 
     function retakePhoto(){
@@ -555,27 +549,6 @@ img.onclick = () => openLightbox(item.img);
     window.downloadAll = downloadAll;
 
     await loadGallery();
-    const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightboxImg");
-
-function openLightbox(src){
-  lightboxImg.src = src;
-  lightbox.classList.add("open");
-}
-
-function closeLightbox(){
-  lightbox.classList.remove("open");
-  lightboxImg.removeAttribute("src");
-}
-
-window.closeLightbox = closeLightbox; // HTML onclick için
   </script>
-  <!-- Lightbox (büyütme) -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-  <div class="lightboxInner" onclick="event.stopPropagation()">
-    <button class="lightboxClose" type="button" onclick="closeLightbox()">×</button>
-    <img id="lightboxImg" class="lightboxImg" alt="Büyük fotoğraf">
-  </div>
-</div>
 </body>
 </html>
